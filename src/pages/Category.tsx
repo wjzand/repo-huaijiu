@@ -61,13 +61,13 @@ export default function Category() {
         </div>
       </div>
 
-      {/* 筛选排序栏 */}
-      <div className="sticky top-[61px] z-30 bg-warm-50/95 backdrop-blur-sm border-b-2 border-kraft-200 px-4 py-2.5">
-        <div className="flex items-center justify-between gap-3">
+      {/* 筛选排序栏 - 第一行：筛选 + 年代 */}
+      <div className="sticky top-[61px] z-30 bg-warm-50/95 backdrop-blur-sm border-b-2 border-kraft-200 px-4 pt-2.5 pb-2">
+        <div className="flex items-center gap-2 mb-2">
           <button
             onClick={() => setFilterOpen(true)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-warm-100 border-2 border-kraft-300
-              text-wood-600 text-sm font-handwriting"
+              text-wood-600 text-sm font-handwriting flex-shrink-0"
           >
             <Filter size={14} />
             筛选
@@ -76,36 +76,45 @@ export default function Category() {
             )}
           </button>
 
-          <div className="flex-1 h-scroll" style={{ paddingBottom: 0 }}>
-            {(['all', '80s', '90s', '00s'] as const).map(era => (
+          <div className="flex-1 overflow-x-auto hide-scrollbar -mx-1 px-1">
+            <div className="flex gap-1.5 items-center min-w-max pr-1">
+              {(['all', '80s', '90s', '00s'] as const).map(era => (
+                <button
+                  key={era}
+                  onClick={() => setEraFilter(era)}
+                  className={cn(
+                    'px-3 py-1.5 rounded-full border-2 text-sm font-handwriting transition-all',
+                    eraFilter === era
+                      ? 'bg-wood-600 text-warm-100 border-wood-700'
+                      : 'bg-warm-100 text-wood-600 border-kraft-300'
+                  )}
+                >
+                  {era === 'all' ? '全部年代' : ERA_LABEL[era]}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* 第二行：排序方式 */}
+        <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar -mx-1 px-1 pb-0.5">
+          <div className="flex gap-1.5 min-w-max">
+            {SORT_OPTIONS.map(o => (
               <button
-                key={era}
-                onClick={() => setEraFilter(era)}
+                key={o.value}
+                onClick={() => setSortBy(o.value)}
                 className={cn(
-                  'px-3 py-1.5 rounded-full border-2 text-sm font-handwriting transition-all flex-shrink-0',
-                  eraFilter === era
-                    ? 'bg-wood-600 text-warm-100 border-wood-700'
+                  'px-3 py-1 rounded-full border-2 text-xs font-handwriting transition-all whitespace-nowrap',
+                  sortBy === o.value
+                    ? 'bg-rust-500 text-warm-50 border-rust-700'
                     : 'bg-warm-100 text-wood-600 border-kraft-300'
                 )}
               >
-                {era === 'all' ? '全部年代' : ERA_LABEL[era]}
+                {o.label}
               </button>
             ))}
           </div>
-
-          <div className="relative">
-            <select
-              value={sortBy}
-              onChange={e => setSortBy(e.target.value as SortType)}
-              className="appearance-none pl-3 pr-8 py-1.5 rounded-full bg-warm-100 border-2 border-kraft-300
-                text-wood-600 text-sm font-handwriting outline-none"
-            >
-              {SORT_OPTIONS.map(o => (
-                <option key={o.value} value={o.value}>{o.label}</option>
-              ))}
-            </select>
-            <SortAsc size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-wood-500" />
-          </div>
+          <div className="flex-1 min-w-[2px]" />
         </div>
       </div>
 

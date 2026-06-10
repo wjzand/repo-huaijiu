@@ -2,9 +2,12 @@ import type { Question, Danmaku, Banner, RankingItem, Coupon } from '@/types';
 
 const imgQ = (emoji: string) =>
   `data:image/svg+xml;utf8,${encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 160' width='240' height='160'>
-      <rect width='240' height='160' rx='12' fill='%23FFF8E1'/>
-      <text x='50%25' y='55%25' font-size='80' text-anchor='middle' dominant-baseline='middle'>${emoji}</text>
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 280' width='360' height='280'>
+      <rect width='360' height='280' rx='16' fill='%23FFF8E1'/>
+      <rect x='8' y='8' width='344' height='264' rx='12' fill='none' stroke='%23D7CCC8' stroke-width='4' stroke-dasharray='8 4'/>
+      <rect x='20' y='20' width='56' height='56' rx='8' fill='%23FFE082' stroke='%238D6E63' stroke-width='2'/>
+      <text x='48' y='57' font-size='24' font-family='serif' font-weight='bold' text-anchor='middle' fill='%235D4037'>猜</text>
+      <text x='50%25' y='54%25' font-size='130' text-anchor='middle' dominant-baseline='middle'>${emoji}</text>
     </svg>`
   )}`;
 

@@ -49,7 +49,7 @@ export default function Product() {
 
   const handleBuyNow = () => {
     addItem(product, qty);
-    navigate('/cart');
+    navigate('/checkout');
   };
 
   const fav = isFavorite(product.id);

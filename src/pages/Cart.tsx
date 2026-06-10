@@ -168,10 +168,10 @@ export default function Cart() {
 
       {/* 底部结算栏 */}
       {items.length > 0 && (
-        <div className="fixed bottom-[78px] left-1/2 -translate-x-1/2 w-full max-w-[480px] z-40 px-3 pb-2">
+        <div className="fixed bottom-[100px] left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 px-3 pb-2">
           <div className="wood-shelf rounded-2xl p-1">
             <div className="rounded-xl bg-warm-50 p-3 flex items-center gap-3 relative z-10">
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="text-xs text-kraft-500 font-handwriting">合计（含运费¥{shipping}）</div>
                 <div className="font-typewriter text-2xl text-rust-600 font-bold leading-tight">
                   ¥{finalTotal.toFixed(2)}
@@ -180,7 +180,7 @@ export default function Cart() {
               <button
                 onClick={() => navigate('/checkout')}
                 className={cn(
-                  'btn-retro-primary !px-6 !py-3 text-lg',
+                  'btn-retro-primary !px-5 !py-3 text-base flex-shrink-0',
                   totalCount === 0 && 'opacity-50 cursor-not-allowed pointer-events-none'
                 )}
               >

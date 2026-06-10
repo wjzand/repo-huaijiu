@@ -199,11 +199,13 @@ export default function Quiz() {
 
                 {store.currentQuestions[store.currentIndex].image && (
                   <div className="mb-5 flex justify-center">
-                    <img
-                      src={store.currentQuestions[store.currentIndex].image}
-                      alt=""
-                      className="w-2/3 max-w-[220px] rounded-xl border-4 border-wood-500 shadow-vintage"
-                    />
+                    <div className="w-full max-w-[300px] rounded-2xl border-[6px] border-wood-500 shadow-vintage overflow-hidden bg-warm-100">
+                      <img
+                        src={store.currentQuestions[store.currentIndex].image}
+                        alt=""
+                        className="w-full h-auto block"
+                      />
+                    </div>
                   </div>
                 )}
 
