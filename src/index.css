@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=Zhi+Mang+Xing&family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&family=Special+Elite&family=Courier+Prime&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply font-retro bg-warm-50 text-wood-600;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  h1, h2, h3, .title-hand {
+    @apply font-handwriting;
+  }
+}
+
+@layer components {
+  /* 容器：移动端最大宽度限制 */
+  .app-shell {
+    @apply mx-auto w-full max-w-[480px] min-h-screen bg-warm-50 relative overflow-hidden;
+    box-shadow: 0 0 40px rgba(139, 69, 19, 0.15);
+  }
+
+  /* 3D 复古按钮 */
+  .btn-retro {
+    @apply inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl
+           font-handwriting text-wood-700 bg-warm-200 border-2 border-wood-500
+           shadow-button-3d active:shadow-button-pressed active:translate-y-[2px]
+           transition-all duration-100 select-none;
+  }
+  .btn-retro-primary {
+    @apply btn-retro bg-rust-500 text-warm-50 border-rust-700;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  }
+  .btn-retro-success {
+    @apply btn-retro bg-mint-400 text-wood-700 border-wood-600;
+  }
+  .btn-retro-block {
+    @apply w-full;
+  }
+
+  /* 复古卡片 - 牛皮纸底 */
+  .card-kraft {
+    @apply rounded-2xl bg-kraft-100 border-2 border-kraft-300 p-4
+           shadow-vintage relative overflow-hidden;
+  }
+  .card-kraft::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  }
+
+  /* 木纹货架板 */
+  .wood-shelf {
+    @apply bg-gradient-to-b from-wood-400 via-wood-500 to-wood-600 relative;
+    box-shadow:
+      inset 0 2px 0 rgba(255, 220, 150, 0.3),
+      inset 0 -3px 0 rgba(0, 0, 0, 0.25),
+      0 6px 12px rgba(139, 69, 19, 0.25);
+  }
+  .wood-shelf::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none opacity-30;
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q 30 15, 60 20 T 120 20' stroke='%234A2308' stroke-width='0.6' fill='none' opacity='0.5'/%3E%3Cpath d='M0 30 Q 40 26, 80 30 T 120 30' stroke='%234A2308' stroke-width='0.5' fill='none' opacity='0.4'/%3E%3C/svg%3E");
+  }
+
+  /* 玻璃罐容器 */
+  .glass-jar {
+    @apply relative rounded-t-[40%] rounded-b-2xl overflow-hidden;
+    background: linear-gradient(160deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+    border: 2px solid rgba(255,255,255,0.4);
+    box-shadow:
+      inset 6px 4px 16px rgba(255,255,255,0.35),
+      inset -6px -6px 20px rgba(139, 69, 19, 0.15),
+      0 8px 18px rgba(0,0,0,0.12);
+  }
+  .glass-jar::after {
+    content: '';
+    @apply absolute top-1 left-4 w-1/3 h-8 rounded-full pointer-events-none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0));
+    transform: rotate(-12deg);
+  }
+
+  /* 复古价签贴纸 */
+  .price-tag {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 relative
+           bg-warm-300 border-2 border-rust-500 rounded-sm font-typewriter;
+    transform: rotate(-2deg);
+    box-shadow: 2px 2px 0 rgba(178, 34, 34, 0.35);
+  }
+  .price-tag::before {
+    content: '';
+    @apply absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full
+           bg-rust-500 border-2 border-warm-100;
+  }
+
+  /* 手写虚线边框（田字格/试卷） */
+  .exam-paper {
+    @apply bg-warm-50 rounded-xl p-5 relative;
+    border: 2px dashed #B8956A;
+    background-image:
+      linear-gradient(rgba(139,69,19,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,69,19,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* 弹幕LED屏背景 */
+  .led-screen {
+    @apply bg-black/90 rounded-lg py-2 px-4 overflow-hidden relative;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .led-screen::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+
+  /* 热敏纸小票 */
+  .receipt {
+    @apply bg-thermal-paper rounded-lg p-5 mx-auto max-w-sm relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(139,69,19,0.1);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+  .receipt::before, .receipt::after {
+    content: '';
+    @apply absolute left-0 right-0 h-3 pointer-events-none;
+    background-image: radial-gradient(circle, transparent 5px, #F8F0E0 5.5px);
+    background-size: 14px 14px;
+    background-repeat: repeat-x;
+  }
+  .receipt::before { top: -6px; background-position: 0 7px; }
+  .receipt::after { bottom: -6px; background-position: 0 7px; transform: rotate(180deg); }
+
+  /* 印章效果 */
+  .stamp {
+    @apply inline-block px-4 py-1.5 border-[3px] border-rust-500 text-rust-500
+           font-handwriting text-xl rounded-md;
+    transform: rotate(-12deg);
+    opacity: 0.85;
+  }
+
+  /* 霓虹灯招牌字 */
+  .neon-title {
+    @apply font-handwriting text-5xl text-warm-100 tracking-wider;
+    text-shadow:
+      0 0 8px #FFD700,
+      0 0 16px #FF6B35,
+      0 0 32px #FF4500,
+      2px 2px 0 rgba(139, 69, 19, 0.6);
+  }
+
+  /* 隐藏滚动条但可滚动 */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 横向滑动容器 */
+  .h-scroll {
+    @apply flex gap-4 overflow-x-auto hide-scrollbar pb-2;
+    scroll-snap-type: x mandatory;
+  }
+  .h-scroll > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+}
+
+@layer utilities {
+  .text-shadow-hand {
+    text-shadow: 2px 2px 0 rgba(139, 69, 19, 0.15);
+  }
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+  }
+}
