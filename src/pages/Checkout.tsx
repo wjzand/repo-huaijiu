@@ -8,6 +8,7 @@ import { useToast } from '@/components/common/Toast';
 import { useCartStore } from '@/store/useCartStore';
 import { useUserStore } from '@/store/useUserStore';
 import { useDanmakuStore } from '@/store/useDanmakuStore';
+import { useGachaStore } from '@/store/useGachaStore';
 import type { Address, Coupon } from '@/types';
 import { cn } from '@/lib/utils';
 
@@ -17,6 +18,7 @@ export default function Checkout() {
   const { items, totalPrice, totalCount, clearCart } = useCartStore();
   const { addresses, getDefaultAddress, addAddress, coupons, addOrder, addCoupon, addDanmakuRecord } = useUserStore();
   const { addDanmaku } = useDanmakuStore();
+  const addCoins = useGachaStore(s => s.addCoins);
 
   const [addrOpen, setAddrOpen] = useState(false);
   const [couponOpen, setCouponOpen] = useState(false);
@@ -115,6 +117,10 @@ export default function Checkout() {
 
       // 清空购物车
       clearCart();
+
+      // 下单赠送童年硬币
+      addCoins(1, 'order', '成功下单赠送');
+
       setSubmitting(false);
 
       // 新客奖励一张优惠券

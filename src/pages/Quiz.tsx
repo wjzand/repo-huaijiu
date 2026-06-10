@@ -4,6 +4,7 @@ import { Trophy, Target, Gift, RotateCcw, Award, Sparkles, CheckCircle, XCircle,
 import Header from '@/components/layout/Header';
 import { useQuizStore } from '@/store/useQuizStore';
 import { useUserStore } from '@/store/useUserStore';
+import { useGachaStore } from '@/store/useGachaStore';
 import { useToast } from '@/components/common/Toast';
 import { rankingList } from '@/data/quiz';
 import { cn } from '@/lib/utils';
@@ -18,6 +19,7 @@ export default function Quiz() {
   const store = useQuizStore();
   const addCoupon = useUserStore(s => s.addCoupon);
   const addQuizRecord = useUserStore(s => s.addQuizRecord);
+  const addCoins = useGachaStore(s => s.addCoins);
 
   const handleStart = () => {
     if (store.startQuiz()) {
@@ -49,6 +51,11 @@ export default function Quiz() {
 
   const handleFinish = () => {
     store.finishQuiz();
+    // 答对全部5题额外奖励1枚童年硬币
+    if (store.correctCount === 5) {
+      addCoins(1, 'quiz_perfect', '答题满分奖励');
+      show('🎉 童年学神！奖励1枚童年硬币', 'success');
+    }
     if (store.correctCount >= 3) {
       setTimeout(() => setShowLottery(true), 400);
     } else {

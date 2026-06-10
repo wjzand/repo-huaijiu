@@ -136,3 +136,87 @@ export const ERA_LABEL: Record<Era, string> = {
   '90s': '90年代',
   '00s': '00年代',
 };
+
+// =========================
+// 童年扭蛋机相关类型
+// =========================
+
+export type GachaPrizeTier = 'special' | 'first' | 'second' | 'third' | 'fourth' | 'fifth' | 'participation';
+export type GachaPrizeType = 'giftpack' | 'coupon' | 'snack' | 'cardpiece';
+
+export interface GachaPrize {
+  tier: GachaPrizeTier;
+  tierName: string;
+  type: GachaPrizeType;
+  name: string;
+  description: string;
+  emoji: string;
+  color: string;
+  bgColor: string;
+  probability: number;
+  couponId?: string;
+  snackId?: string;
+}
+
+export interface GachaRecord {
+  id: string;
+  prize: GachaPrize;
+  cardPieceId?: string;
+  createdAt: string;
+}
+
+export interface MemoryCard {
+  id: string;
+  name: string;
+  emoji: string;
+  category: ProductCategory;
+  era: Era;
+  illustration: string;
+  funFact: string;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  series: string;
+}
+
+export interface CardCollection {
+  cardId: string;
+  count: number;
+  obtainedAt: string;
+}
+
+export interface ExchangeReward {
+  id: string;
+  name: string;
+  description: string;
+  emoji: string;
+  requiredCards: number;
+  rewardType: 'physical' | 'coupon' | 'certificate';
+  value: number;
+}
+
+export type CoinSourceType =
+  | 'order'
+  | 'share_daily'
+  | 'quiz_perfect'
+  | 'rank_top3'
+  | 'new_user'
+  | 'card_gift'
+  | 'exchange';
+
+export interface CoinRecord {
+  id: string;
+  amount: number;
+  sourceType: CoinSourceType;
+  sourceDesc: string;
+  createdAt: string;
+  expireAt?: string;
+}
+
+export const COIN_SOURCE_LABEL: Record<CoinSourceType, string> = {
+  order: '下单赠送',
+  share_daily: '每日分享',
+  quiz_perfect: '答题满分',
+  rank_top3: '学神榜TOP3',
+  new_user: '新用户注册',
+  card_gift: '赠送卡片',
+  exchange: '重复卡兑换',
+};

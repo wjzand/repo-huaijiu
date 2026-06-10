@@ -16,7 +16,9 @@ export default function BottomNav() {
   const location = useLocation();
 
   const showNav = !location.pathname.startsWith('/order-success') &&
-    !location.pathname.startsWith('/checkout');
+    !location.pathname.startsWith('/checkout') &&
+    !location.pathname.startsWith('/gacha') &&
+    !location.pathname.startsWith('/card-book');
 
   if (!showNav) return null;
 

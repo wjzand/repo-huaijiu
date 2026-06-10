@@ -13,6 +13,8 @@ import Profile from "@/pages/profile/Profile";
 import OrderList from "@/pages/profile/OrderList";
 import CouponList from "@/pages/profile/CouponList";
 import Favorites from "@/pages/profile/Favorites";
+import Gacha from "@/pages/Gacha";
+import CardBook from "@/pages/CardBook";
 
 export default function App() {
   return (
@@ -40,6 +42,8 @@ function AppShell() {
         <Route path="/profile/orders" element={<OrderList />} />
         <Route path="/profile/coupons" element={<CouponList />} />
         <Route path="/profile/favorites" element={<Favorites />} />
+        <Route path="/gacha" element={<Gacha />} />
+        <Route path="/card-book" element={<CardBook />} />
         <Route
           path="*"
           element={

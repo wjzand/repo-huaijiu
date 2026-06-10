@@ -152,6 +152,8 @@ export default function Profile() {
                   else if (m.id === 'favorites') navigate('/profile/favorites');
                   else if (m.id === 'quiz') navigate('/quiz');
                   else if (m.id === 'address') navigate('/profile/orders');
+                  else if (m.id === 'cards') navigate('/card-book');
+                  else if (m.id === 'invite') navigate('/gacha');
                   else alert(`「${m.label}」模块即将上线～`);
                 }}
                 className={cn(

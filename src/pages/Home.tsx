@@ -8,6 +8,7 @@ import DanmakuBar from '@/components/home/DanmakuBar';
 import ProductCard from '@/components/product/ProductCard';
 import { products, getRecommendedProducts } from '@/data/products';
 import { useQuizStore } from '@/store/useQuizStore';
+import { useGachaStore } from '@/store/useGachaStore';
 import { cn } from '@/lib/utils';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
   const [musicOn, setMusicOn] = useState(false);
   const canPlay = useQuizStore(s => s.canPlayToday());
   const chances = useQuizStore(s => s.dailyChances);
+  const coins = useGachaStore(s => s.coins);
 
   const recommended = getRecommendedProducts();
   const hotList = [...products].sort((a, b) => b.sales - a.sales).slice(0, 4);
@@ -180,6 +182,29 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ===== 浮动扭蛋机入口 ===== */}
+      <button
+        onClick={() => navigate('/gacha')}
+        className="fixed right-3 bottom-[110px] z-40 animate-[floatY_2.8s_ease-in-out_infinite]"
+      >
+        <div className="relative">
+          <div className="w-[66px] h-[86px] rounded-t-2xl rounded-b-3xl bg-gradient-to-b from-rose-400 via-rose-500 to-rose-700 border-[3px] border-rose-900 shadow-[0_6px_20px_rgba(244,63,94,0.45)] relative overflow-hidden">
+            <div className="absolute top-1 left-0 right-0 h-1/2 rounded-xl mx-1 mt-1 bg-gradient-to-b from-sky-200/60 to-sky-300/40 border-2 border-sky-900/30 flex items-center justify-center">
+              <div className="text-2xl animate-[bounce_1.5s_ease-in-out_infinite]">🎁</div>
+            </div>
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-br from-yellow-300 to-orange-500 border-2 border-orange-800 shadow-md" />
+          </div>
+          <div className="absolute -top-2 -right-2 min-w-[24px] h-6 px-1.5 rounded-full bg-amber-400 border-2 border-amber-700 text-amber-900 text-[11px] font-typewriter font-bold flex items-center justify-center shadow-md">
+            {coins}
+          </div>
+          <div className="mt-1 text-center">
+            <span className="inline-block px-1.5 py-0.5 rounded-full bg-black/50 backdrop-blur-sm text-white text-[9px] font-handwriting whitespace-nowrap">
+              扭蛋赢奖
+            </span>
+          </div>
+        </div>
+      </button>
 
       {/* ===== 页脚 ===== */}
       <footer className="px-4 pb-4">
